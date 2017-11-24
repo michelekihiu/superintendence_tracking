@@ -11,7 +11,7 @@ INSTALLED_APPS = [
 
     'import_export',
 
-    'core',
+    'sgs',
 ]
 
 SITE_ID = 1
@@ -90,3 +90,5 @@ LOGGING = {
     'root': {
         'handlers': ['console'],
     }}
+
+    
