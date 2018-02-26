@@ -8,7 +8,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-
+	'django.contrib.staticfiles',
     'import_export',
 
     'sgs',
@@ -20,7 +20,18 @@ ROOT_URLCONF = "urls"
 
 DEBUG = True
 
+SITE_ROOT = os.path.abspath(os.path.dirname(__file__))
+
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join( SITE_ROOT, 'static')
+SITE_STATIC_ROOT = os.path.join( SITE_ROOT, 'local_static')
+
+# Additional locations of static files
+STATICFILES_DIRS = (
+    # Don't forget to use absolute paths, not relative paths.
+    ('', SITE_STATIC_ROOT),
+)
 
 SECRET_KEY = '2n6)=vnp8@bu0om9d05vwf7@=5vpn%)97-!d*t4zq1mku%0-@j'
 
@@ -91,4 +102,6 @@ LOGGING = {
         'handlers': ['console'],
     }}
 
-    
+
+
+

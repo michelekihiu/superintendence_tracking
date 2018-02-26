@@ -25,7 +25,7 @@ class ShipmentResource(ModelResource):
 
 class ShipmentAdmin(ImportExportMixin, admin.ModelAdmin):
     #list_filter = ['categories', 'author']
-    list_display = ['vessel', 'ata_eta_mom', 'bl_number', 'qty_disch_loaded', 'ex_si_number_po_number', 'commodity']
+    list_display = ['vessel', 'ata_eta_mom', 'bl_number', 'ocean_del_terms', 'bl_teu', 'bl_feu', 'cf_agent', 'qty_disch_loaded', 'ex_si_number_po_number', 'commodity', 'pack', 'recipient_country', 'project_type', 'sgs_amount' ]
     list_filter = [ 'ata_eta_mom', 'cf_agent', 'ocean_del_terms' ]
     resource_class = ShipmentResource
 
