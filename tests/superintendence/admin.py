@@ -19,6 +19,7 @@ class ShipmentResource(ModelResource):
     class Meta:
         model = Shipment
 
+
     def for_delete(self, row, instance):
         return self.fields['id'].clean(row) == ''
 
@@ -27,6 +28,8 @@ class ShipmentAdmin(ImportExportMixin, admin.ModelAdmin):
     #list_filter = ['categories', 'author']
     list_display = ['vessel', 'ata_eta_mom', 'bl_number', 'ocean_del_terms', 'bl_teu', 'bl_feu', 'cf_agent', 'qty_disch_loaded', 'ex_si_number_po_number', 'commodity', 'pack', 'recipient_country', 'project_type', 'sgs_amount' ]
     list_filter = [ 'ata_eta_mom', 'cf_agent', 'ocean_del_terms' ]
+    search_fields = ['vessel']
+    list_per_page = 5
     resource_class = ShipmentResource
 
 
@@ -42,4 +45,4 @@ admin.site.register(Shipment, ShipmentAdmin)
 #admin.site.register(Author, AuthorAdmin)
 #admin.site.register(Child, ChildAdmin)
 
-admin.site.site_header = 'SGS Shipments'
+admin.site.site_header = 'Superintendents Tracking'

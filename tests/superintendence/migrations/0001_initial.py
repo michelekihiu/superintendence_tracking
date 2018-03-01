@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
-import sgs.models
+import superintendence.models
 
 
 class Migration(migrations.Migration):
@@ -63,7 +63,7 @@ class Migration(migrations.Migration):
             name='WithDynamicDefault',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(default=sgs.models.random_name, max_length=100, verbose_name='Dyn Default')),
+                ('name', models.CharField(default=superintendence.models.random_name, max_length=100, verbose_name='Dyn Default')),
             ],
         ),
         migrations.CreateModel(

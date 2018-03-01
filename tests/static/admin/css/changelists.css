@@ -27,6 +27,7 @@
 
 .change-list .filtered table tbody th {
     padding-right: 1em;
+    background-color: #7fffd4;
 }
 
 #changelist-form .results {
@@ -50,6 +51,7 @@
     padding: 0;
     white-space: nowrap;
     vertical-align: middle;
+    background-color: #7fffd4;
 }
 
 #changelist table thead th.action-checkbox-column {
@@ -84,12 +86,12 @@
 }
 
 #changelist #toolbar form #searchbar {
-    height: 19px;
+    height: 12px;
     border: 1px solid #ccc;
     padding: 2px 5px;
     margin: 0;
     vertical-align: top;
-    font-size: 13px;
+    font-size: 11px;
 }
 
 #changelist #toolbar form #searchbar:focus {
@@ -341,4 +343,8 @@
 
 #changelist .actions .button:focus, #changelist .actions .button:hover {
     border-color: #999;
+}
+
+#result-list thead th.column-vessel {
+    width: 500px;
 }

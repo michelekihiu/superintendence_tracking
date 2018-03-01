@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 import os
 
 INSTALLED_APPS = [
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -11,7 +12,7 @@ INSTALLED_APPS = [
 	'django.contrib.staticfiles',
     'import_export',
 
-    'sgs',
+    'superintendence',
 ]
 
 SITE_ID = 1
@@ -51,6 +52,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': (
+                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ),
@@ -101,7 +103,3 @@ LOGGING = {
     'root': {
         'handlers': ['console'],
     }}
-
-
-
-
