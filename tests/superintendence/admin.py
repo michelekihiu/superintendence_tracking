@@ -5,13 +5,7 @@ from django.contrib import admin
 from import_export.resources import ModelResource
 from import_export.admin import ImportExportMixin, ImportMixin, ExportActionModelAdmin
 
-#from .models import Book, Category, Author, Child
-
 from .models import Shipment
-
-
-#class ChildAdmin(ImportMixin, admin.ModelAdmin):
-    #pass
 
 
 class ShipmentResource(ModelResource):
@@ -25,24 +19,33 @@ class ShipmentResource(ModelResource):
 
 
 class ShipmentAdmin(ImportExportMixin, admin.ModelAdmin):
-    #list_filter = ['categories', 'author']
-    list_display = ['vessel', 'ata_eta_mom', 'bl_number', 'ocean_del_terms', 'bl_teu', 'bl_feu', 'cf_agent', 'qty_disch_loaded', 'ex_si_number_po_number', 'commodity', 'pack', 'recipient_country', 'project_type', 'sgs_amount' ]
+    def set_container_charges_inspection_stripping(modelAdmin, request, queryset):
+        for shipment in queryset:
+            if shipment.bl_teu > 0:
+                shipment.sgs_amount = shipment.bl_teu * 38
+            elif shipment.bl_feu > 0:
+                shipment.sgs_amount = shipment.fl_feu * 38
+            shipment.save()
+
+    def set_container_charges_inspection(modelAdmin, request, queryset):
+        for shipment in queryset:
+            if shipment.bl_teu > 0:
+                shipment.sgs_amount = shipment.bl_teu * 16
+            elif shipment.bl_feu > 0:
+                shipment.sgs_amount = shipment.fl_feu * 16
+            shipment.save()
+
+    list_display = ['vessel', 'ata_eta_mom', 'bl_number', 'ocean_del_terms', 'bl_teu', 'bl_feu', 'cf_agent', 'tonnage', 'ex_si_number_po_number', 'commodity', 'pack', 'recipient_country', 'project_type', 'sgs_amount', 'po_number', 'ses_number' ]
     list_filter = [ 'ata_eta_mom', 'cf_agent', 'ocean_del_terms' ]
     search_fields = ['vessel']
     list_per_page = 5
     resource_class = ShipmentResource
+    actions = [set_container_charges_inspection_stripping, set_container_charges_inspection,]
 
+    set_container_charges_inspection_stripping.short_description = 'Container charges - inspection + stripping'
+    set_container_charges_inspection.short_description = 'Container charges - inspection'
 
-#class CategoryAdmin(ExportActionModelAdmin):
-    #pass
-
-
-#class AuthorAdmin(ImportMixin, admin.ModelAdmin):
-    #pass
 
 admin.site.register(Shipment, ShipmentAdmin)
-#admin.site.register(Category, CategoryAdmin)
-#admin.site.register(Author, AuthorAdmin)
-#admin.site.register(Child, ChildAdmin)
 
 admin.site.site_header = 'Superintendents Tracking'

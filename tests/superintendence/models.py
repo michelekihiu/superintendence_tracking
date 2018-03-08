@@ -48,13 +48,17 @@ class Shipment(models.Model):
     bl_feu = models.IntegerField(null=True, blank=True)
     cf_agent = models.CharField(max_length=20, null=True, blank=True)
     bl_number = models.CharField(max_length=50, null=True, blank=True)
-    qty_disch_loaded = models.DecimalField(max_digits=10, decimal_places=3, null=True, blank=True)
+    tonnage = models.DecimalField(max_digits=10, decimal_places=3, null=True, blank=True)
     ex_si_number_po_number = models.CharField(max_length=500, null=True, blank=True)
     commodity = models.CharField(max_length=50, null=True, blank=True)
     pack = models.CharField(max_length=10, null=True, blank=True)
     recipient_country = models.CharField(max_length=20, null=True, blank=True)
     project_type = models.CharField(max_length=20, null=True, blank=True)
+    po_number = models.CharField(max_length=20, null=True, blank=True)
+    ses_number = models.CharField(max_length=20, null=True, blank=True)
     sgs_amount = models.IntegerField(null=True, blank=True)
+
+
 
     def __str__(self):
         return self.vessel
